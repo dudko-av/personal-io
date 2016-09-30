@@ -1,5 +1,5 @@
 <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
@@ -26,7 +26,21 @@
       <a class="mdl-navigation__link" href="">Link</a>
     </nav>
   </div>
-  <main class="mdl-layout__content">
-    <div class="page-content"><!-- Your content goes here --></div>
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-grid page-content"><!-- Your content goes here -->
+      <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <!-- Numeric Textfield -->
+        <form [formGroup]="recordForm" (submit)="saveRecord()" style="padding: 8px;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input formControlName="volume" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+            <label class="mdl-textfield__label" for="sample4">Number...</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+          <button style="margin: 0 16px;" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">
+            ADD
+          </button>
+        </form>
+      </div>
+    </div>
   </main>
 </div>
