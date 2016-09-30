@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
 
   constructor(public router: Router) {
-    router.events.filter(ev => (ev instanceof NavigationEnd)).subscribe(() => {
+    router.events.filter(ev => (ev instanceof NavigationEnd && window['componentHandler'])).subscribe(() => {
       window['componentHandler'].upgradeDom();
     });
   }

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --prod",
+    "deploy": "firebase deploy",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
