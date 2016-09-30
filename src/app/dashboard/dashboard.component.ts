@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  records: FirebaseListObservable<any[]>;
   recordForm: FormGroup;
 
   constructor(
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.records = this.af.database.list('/records');
     this.recordForm = this.formBuilder.group({
       volume: ''
     });
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
   saveRecord() {
     debugger
+    this.records.push(this.recordForm.value);
   }
 
 }

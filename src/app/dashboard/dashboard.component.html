@@ -28,7 +28,7 @@
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid page-content"><!-- Your content goes here -->
-      <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+      <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <!-- Numeric Textfield -->
         <form [formGroup]="recordForm" (submit)="saveRecord()" style="padding: 8px;">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -40,6 +40,15 @@
             ADD
           </button>
         </form>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+          <thead>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of records | async">
+              <td class="mdl-data-table__cell--non-numeric">{{ item.volume }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
