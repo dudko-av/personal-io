@@ -17,8 +17,40 @@
     overflow-y: auto;
     overflow-x: hidden
   }
+
+  .page-content {
+    padding: 1px;
+
+    & > .mdl-grid {
+      margin: 0;
+      width: 100%;
+    }
+  }
 }
 
 .page-content {
   max-width: 1080px;
+}
+
+.history-card {
+  margin-bottom: 8px;
+  border-top: solid #eeeeee 1px;
+}
+
+.categories-list {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  z-index: 9;
+  display: none;
+  max-width: 1050px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+md-input {
+  width: 100%;
 }

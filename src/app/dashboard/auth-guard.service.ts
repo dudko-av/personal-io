@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 import { AngularFire } from 'angularfire2';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -10,7 +11,7 @@ export class AuthGuardService implements CanActivate {
     public af: AngularFire
   ) {}
 
-  canActivate() {
+  canActivate(): Observable<boolean> {
     return this.af.auth.take(1).map<boolean>(user => {
       if (!user) {
         this.router.navigate(['/login']);

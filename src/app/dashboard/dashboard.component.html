@@ -9,7 +9,7 @@
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="">
-          {{ (af.auth | async).auth.displayName}}
+          {{ (af.auth | async).auth.displayName }}
         </a>
         <a class="mdl-navigation__link" href="">
           <img class="user-photo" [src]="(af.auth | async).auth.photoURL">
@@ -29,26 +29,31 @@
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid page-content"><!-- Your content goes here -->
       <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-        <!-- Numeric Textfield -->
-        <form [formGroup]="recordForm" (submit)="saveRecord()" style="padding: 8px;">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input formControlName="volume" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-            <label class="mdl-textfield__label" for="sample4">Number...</label>
-            <span class="mdl-textfield__error">Input is not a number!</span>
+        <form [formGroup]="recordForm" (submit)="saveRecord()" class="mdl-grid mdl-cell mdl-cell--12-col">
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
+            <md-input formControlName="amount" placeholder="Amount" type="number" autocomplete="off"></md-input>
           </div>
-          <button style="margin: 0 16px;" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
+            <md-input formControlName="category" placeholder="Category" autocomplete="off" (focus)="ctgList.style.display = 'flex'"></md-input>
+            <ul #ctgList class="mdl-grid mdl-shadow--2dp categories-list">
+              <li *ngFor="let item of categories | async" class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone"
+                  style="background-color: #ececec; padding: 8px;"
+                  (click)="recordForm.patchValue({ category: item.name }); ctgList.style.display = 'none'">
+                {{ item.name }}
+              </li>
+            </ul>
+          </div>
+          <button [disabled]="recordForm.invalid" style="align-self: center;" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-cell mdl-cell--1-col mdl-cell--12-col-phone">
             ADD
           </button>
         </form>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
-          <thead>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of records | async">
-              <td class="mdl-data-table__cell--non-numeric">{{ item.volume }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul style="width: 100%; list-style: none; margin: 0; padding: 0;">
+            <li *ngFor="let item of list | async" class="history-card mdl-grid mdl-shadow--2dp">
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.category }}</div>
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.amount }}</div>
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.createdAt | date:'short' }}</div>
+            </li>
+        </ul>
       </div>
     </div>
   </main>

@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PersonalIoRoutingModule } from './app-routing.module';
 import { AuthGuardService } from './dashboard/auth-guard.service';
+import { InputNumberDirective } from './shared/form-controls/input-number.directive';
 
 const myFirebaseConfig = {
   apiKey: 'AIzaSyAk0SF8s_cP12DrLhfSiUOT23MS8h4FXwA',
@@ -29,7 +30,8 @@ const myFirebaseAuthConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    InputNumberDirective
   ],
   imports: [
     BrowserModule,
