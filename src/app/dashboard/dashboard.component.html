@@ -34,11 +34,12 @@
             <md-input formControlName="amount" placeholder="Amount" type="number" autocomplete="off"></md-input>
           </div>
           <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
-            <md-input formControlName="category" placeholder="Category" autocomplete="off" (focus)="ctgList.style.display = 'flex'"></md-input>
+            <md-input formControlName="category" placeholder="Category" autocomplete="off" #ctgInput
+                      (focus)="ctgList.style.display = 'flex'"></md-input>
             <ul #ctgList class="mdl-grid mdl-shadow--2dp categories-list">
               <li *ngFor="let item of categories | async" class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone"
                   style="background-color: #ececec; padding: 8px;"
-                  (click)="recordForm.patchValue({ category: item.name }); ctgList.style.display = 'none'">
+                  (click)="recordForm.patchValue({ category: item.name });">
                 {{ item.name }}
               </li>
             </ul>

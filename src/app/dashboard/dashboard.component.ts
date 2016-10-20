@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseAuthState } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,12 +9,14 @@ import { Observable } from 'rxjs';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   list: Observable<any[]>;
   records: FirebaseListObservable<any[]>;
   categories: Observable<any[]>;
   categoriesRef: FirebaseListObservable<any[]>;
   recordForm: FormGroup;
+  @ViewChild('ctgInput') ctgInput: MdInput;
+  @ViewChild('ctgList') ctgList;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,6 +43,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.ctgInput.onBlur.debounceTime(120).subscribe((e) => {
+      this.ctgList.nativeElement.style.display = 'none';
+    });
+  }
+
   saveRecord() {
     this.categories.take(1).subscribe(list => {
       let exists = list.filter(item => item.name === this.recordForm.value.category)[0];
@@ -56,7 +65,6 @@ export class DashboardComponent implements OnInit {
     this.records.push(this.recordForm.value).then(() => {
       this.recordForm.reset();
     });
-
   }
 
 }
