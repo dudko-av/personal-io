@@ -28,7 +28,9 @@
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid page-content"><!-- Your content goes here -->
-      <div class="mdl-color--white mdl-shadow--2dp" style="margin: 8px; padding: 8px;">{{ outlay | async }}</div>
+<!--      <div class="mdl-cell mdl-cell&#45;&#45;3-col mdl-cell&#45;&#45;4-col-phone mdl-color&#45;&#45;white mdl-shadow&#45;&#45;2dp">
+        <span class="">{{ outlay | async }}</span>
+      </div>-->
       <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <form [formGroup]="recordForm" (submit)="saveRecord()" class="mdl-grid mdl-cell mdl-cell--12-col">
           <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
