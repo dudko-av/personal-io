@@ -28,6 +28,7 @@
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid page-content"><!-- Your content goes here -->
+      <div class="mdl-color--white mdl-shadow--2dp" style="margin: 8px; padding: 8px;">{{ outlay | async }}</div>
       <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <form [formGroup]="recordForm" (submit)="saveRecord()" class="mdl-grid mdl-cell mdl-cell--12-col">
           <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
@@ -52,7 +53,10 @@
             <li *ngFor="let item of list | async" class="history-card mdl-grid mdl-shadow--2dp">
               <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.category }}</div>
               <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.amount }}</div>
-              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.createdAt | date:'short' }}</div>
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+                {{ item.createdAt | date:'short' }}
+                <i (click)="remove(item.$key)" style="float: right;" class="material-icons">clear</i>
+              </div>
             </li>
         </ul>
       </div>
