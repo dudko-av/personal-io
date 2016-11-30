@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public af: AngularFire
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { debugger
     this.af.auth.take(1).subscribe((user: FirebaseAuthState) => {
       this.records = this.af.database.list(`/account/${user.uid}/history`);
       this.list = this.records.map(list => list.reverse());
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { debugger
     this.ctgInput.onBlur.debounceTime(120).subscribe((e) => {
       this.ctgList.nativeElement.style.display = 'none';
     });

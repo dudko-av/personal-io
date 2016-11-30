@@ -17,12 +17,12 @@ const myFirebaseConfig = {
   authDomain: 'personal-io-335f0.firebaseapp.com',
   databaseURL: 'https://personal-io-335f0.firebaseio.com',
   storageBucket: 'personal-io-335f0.appspot.com',
-}
+};
 
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Google,
   method: AuthMethods.Redirect
-}
+};
 
 @NgModule({
   declarations: [
