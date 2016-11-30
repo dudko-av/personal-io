@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-import * as firebase from 'firebase';
-import 'rxjs/Rx';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
