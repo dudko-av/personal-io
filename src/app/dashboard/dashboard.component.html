@@ -27,18 +27,36 @@
     </nav>
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-grid page-content"><!-- Your content goes here -->
-      <div class="mdl-color--white mdl-shadow--2dp" style="margin: 8px; padding: 8px;">{{ outlay | async }}</div>
+    <div class="mdl-grid page-content">
+      <!-- Your content goes here -->
+      <div class="mdl-cell mdl-grid mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-phone mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title mdl-card--expand">
+            <h3 class="mdl-card__title-text">TODAY</h3>
+          </div>
+          <div class="mdl-card__supporting-text">
+            {{ outlayToday | async }}
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-phone mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title mdl-card--expand">
+            <h3 class="mdl-card__title-text">TOTAL</h3>
+          </div>
+          <div class="mdl-card__supporting-text">
+            {{ outlayTotal | async }}
+          </div>
+        </div>
+      </div>
       <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <form [formGroup]="recordForm" (submit)="saveRecord()" class="mdl-grid mdl-cell mdl-cell--12-col">
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone">
             <md-input formControlName="amount" placeholder="Amount" type="number" autocomplete="off"></md-input>
           </div>
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-phone">
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone">
             <md-input formControlName="category" placeholder="Category" autocomplete="off" #ctgInput
                       (focus)="ctgList.style.display = 'flex'"></md-input>
             <ul #ctgList class="mdl-grid mdl-shadow--2dp categories-list">
-              <li *ngFor="let item of categories | async" class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone"
+              <li *ngFor="let item of categories | async" class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"
                   style="background-color: #ececec; padding: 8px;"
                   (click)="recordForm.patchValue({ category: item.name });">
                 {{ item.name }}
@@ -51,9 +69,9 @@
         </form>
         <ul style="width: 100%; list-style: none; margin: 0; padding: 0;">
             <li *ngFor="let item of list | async" class="history-card mdl-grid mdl-shadow--2dp">
-              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.category }}</div>
-              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">{{ item.amount }}</div>
-              <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone">
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">{{ item.category }}</div>
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">{{ item.amount }}</div>
+              <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
                 {{ item.createdAt | date:'short' }}
                 <i (click)="remove(item.$key)" style="float: right;" class="material-icons">clear</i>
               </div>

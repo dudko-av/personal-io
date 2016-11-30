@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseAuthState } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +17,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   recordForm: FormGroup;
   @ViewChild('ctgInput') ctgInput: MdInput;
   @ViewChild('ctgList') ctgList;
-  outlay: Observable<number>;
+  outlayTotal: Observable<number>;
+  outlayToday: Observable<number>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +29,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.af.auth.take(1).subscribe((user: FirebaseAuthState) => {
       this.records = this.af.database.list(`/account/${user.uid}/history`);
       this.list = this.records.map(list => list.reverse());
-      this.outlay = this.list.map(list => {
+      this.outlayTotal = this.list.map(list => {
+        return list.reduce((prev, curr) => prev + curr.amount, 0);
+      });
+      this.outlayToday = this.list.map(list => {
+        let today: any = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
+        today = today.getTime();
+        list = list.filter(v => v.createdAt > today);
         return list.reduce((prev, curr) => prev + curr.amount, 0);
       });
       this.categoriesRef = this.af.database.list(`/account/${user.uid}/categories`, {

@@ -17,3 +17,8 @@ import 'core-js/es6/reflect';
 
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
+
+// rxjs operators
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/operator/debounceTime';

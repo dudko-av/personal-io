@@ -54,3 +54,24 @@
 md-input {
   width: 100%;
 }
+.mdl-card {
+  text-align: center;
+  min-height: 0;
+}
+.mdl-card__title-text {
+  align-self: center;
+  font-size: 19px;
+}
+.mdl-card__title {
+  background-color: rgb(63,81,181);
+  color: white;
+  max-height: 50px;
+  justify-content: center;
+}
+.mdl-card__supporting-text {
+  font-size: 1.4em;
+}
+.mdl-card__supporting-text {
+  width: 100%;
+  box-sizing: border-box;
+}
