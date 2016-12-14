@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --port 7894",
     "build": "ng build --prod --aot",
     "deploy": "firebase deploy",
     "lint": "tslint \"src/**/*.ts\"",
@@ -23,7 +23,7 @@
     "@angular/platform-browser": "2.2.3",
     "@angular/platform-browser-dynamic": "2.2.3",
     "@angular/router": "3.2.3",
-    "@angular/material": "2.0.0-alpha.9",
+    "@angular/material": "^2.0.0-alpha.9",
     "angularfire2": "^2.0.0-beta.5",
     "core-js": "^2.4.1",
     "firebase": "^3.4.1",
